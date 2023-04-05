@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { LimitModel } from 'src/app/models/limit';
 import { NeedAmountModel } from 'src/app/models/need-amount';
 import { CalculationService, Entity } from 'src/app/services/calculation.service';
 
@@ -16,11 +15,12 @@ export class NeedAmountViewComponent implements OnInit {
 
 
   public needAmountForm = this._fb.group({
-    number: [''], 
-    need: [0],
-    exist: [0],
-    limit: [0],
-    limitPercent: [0],
+    id: [''],
+    groupCode: [''],
+  averageGrade: [0],
+  totalMissedLectionsAndPractices: [0],
+  totalMissedLections: [0],
+  totalMissedPractices: [0],
   })
 
   constructor(

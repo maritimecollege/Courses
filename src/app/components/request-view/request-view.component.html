@@ -1,60 +1,78 @@
 <div class="wrapper">
-  <form nz-form [formGroup]="requestForm" class="form">
+  <form nz-form [formGroup]="noteForm" class="form">
     <nz-form-item>
       <nz-form-control [nzErrorTip]="error">
         <div>
-          <label for="">Дата заявки</label>
-          <nz-date-picker formControlName="date" ></nz-date-picker>
+          <label for="">Шифр группы</label>
+          <input type="text" formControlName="groupCode" nz-input />
+
         </div>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
       <nz-form-control [nzErrorTip]="error">
         <div>
-          <label for="">Шифр предприятия</label>
-          <input type="text" formControlName="companyCode" nz-input />
+          <label for="">Шифр дисциплины</label>
+          <input type="text" formControlName="courseCode" nz-input />
         </div>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
       <nz-form-control [nzErrorTip]="error">
         <div>
-          <label for="">Номенклатурный номер запрашиваемого материала</label>
-      <input type="text" formControlName="number" nz-input />
+          <label for="">Количество отличных оценок</label>
+      <input type="text" formControlName="fivesQuantity" nz-input />
         </div>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
       <nz-form-control [nzErrorTip]="error">
         <div>
-          <label for="">Код единицы измерения</label>
-          <input type="text" formControlName="measureCode" nz-input />
+          <label for="">Количество хороших оценок</label>
+          <input type="text" formControlName="foursQuantity" nz-input />
         </div>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
       <nz-form-control [nzErrorTip]="error">
         <div>
-          <label for="">Количество</label>
-          <input type="text" formControlName="quantity" nz-input  nz-tooltip/>
+          <label for="">Количество удовлетворительных оценок</label>
+          <input type="text" formControlName="threesQuantity" nz-input  nz-tooltip/>
         </div>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
       <nz-form-control [nzErrorTip]="error">
         <div>
-          <label for="">Цена за единицу</label>
-          <input type="text" formControlName="price" nz-input  nz-tooltip/>
+          <label for="">Количество неудовлетворительных оценок</label>
+          <input type="text" formControlName="twosQuantity" nz-input  nz-tooltip/>
         </div>
       </nz-form-control>
     </nz-form-item>
-    <button nz-button nzType="primary" [disabled]="!requestForm.valid" (click)="edit()">Редактировать</button>
-    <button nz-button nzType="primary" (click)="delete()">Удалить</button>
+    <nz-form-item>
+      <nz-form-control [nzErrorTip]="error">
+        <div>
+          <label for="">Количество пропущенных лекций</label>
+          <input type="text" formControlName="missedLectionsQuantity" nz-input  nz-tooltip/>
+        </div>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control [nzErrorTip]="error">
+        <div>
+          <label for="">Количество пропущенных практических</label>
+          <input type="text" formControlName="missedPracticesQuantity" nz-input  nz-tooltip/>
+        </div>
+      </nz-form-control>
+    </nz-form-item>
+    <button nz-button nzType="primary" [disabled]="!noteForm.valid" (click)="confirmEdit()">Редактировать</button>
+    <button nz-button nzType="primary" (click)="confirmDelete()">Удалить</button>
+
   </form>
 </div>
 
 
 
+
 <ng-template #error>
-  <label for="">Пожалуйста, заполните это поле!</label>
 </ng-template>

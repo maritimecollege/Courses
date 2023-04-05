@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { RequestModel } from 'src/app/models/request';
+import { NoteModel } from 'src/app/models/note';
 import { CalculationService, Entity } from 'src/app/services/calculation.service';
 
 @Component({
@@ -10,16 +10,17 @@ import { CalculationService, Entity } from 'src/app/services/calculation.service
 })
 export class RequestComponent {
 
-  public requestForm = this._fb.group({
+  public noteForm = this._fb.group({
     id: [''],
-    date: ['', Validators.required],
-    companyCode: ['', Validators.required],
-    number: [0, Validators.required],
-    measureCode: [null, Validators.required],
-    quantity: [0, Validators.required],
-    price: [0, Validators.required]
+    groupCode: ['', Validators.required],
+    courseCode: ['', Validators.required],
+    fivesQuantity: [0, Validators.required],
+    foursQuantity: [0, Validators.required],
+    threesQuantity: [0, Validators.required],
+    twosQuantity: [0, Validators.required],
+    missedLectionsQuantity: [0, Validators.required],
+    missedPracticesQuantity: [0, Validators.required],
   })
-
 
   constructor(
     private _fb: FormBuilder,
@@ -28,7 +29,7 @@ export class RequestComponent {
 
 
   save() {
-    this._calculationService.add(this.requestForm.value as RequestModel, Entity.REQUEST);
+    this._calculationService.add(this.noteForm.value as NoteModel, Entity.REQUEST);
     location.reload();
 
   }

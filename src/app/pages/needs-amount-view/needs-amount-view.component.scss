@@ -46,3 +46,8 @@
         margin: 25px 0;
     }
 }
+
+.requests {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }

@@ -1,33 +1,33 @@
 
-
-<header class="header">
-  <nav class="nav">
-    <div class="container">
-      <ul class="header__list">
-        <li>
-          <a routerLink="requests/add" class="button">Добавить запрос</a>
-        </li>
-        <li>
-          <a routerLink="limits/add" class="button">Добавить позицию на складе</a>
-        </li>
-        <li>
-          <a routerLink="requests" class="button">Просмотр всех заявок</a>
-        </li>
-        <li>
-          <a routerLink="limits" class="button">Просмотр всех лимитов</a>
-        </li>
-        <li>
-          <a routerLink="need-amount" class="button">Потребности</a>
-        </li>
-      </ul>
-    </div>
-    </nav>
-  </header>
+ 
   
-  <div class="container">
-    <router-outlet></router-outlet>
-
-  </div>
   
  
+  <nz-layout>
+    <nz-sider nzCollapsible nzWidth="300px">
+      <div class="logo"></div>
+      <ul nz-menu nzTheme="dark" nzMode="inline">
+        <li nz-menu-item>
+          <a routerLink="requests/add" class="button">Добавить запись успеваемости</a>
+        </li>
+        <li nz-menu-item>
+          <a routerLink="requests" class="button">Просмотр всех записей</a>
+
+        </li>
+        <li nz-menu-item>
+          <a routerLink="need-amount" class="button">Рассчет</a>
+
+        </li>
+       
+      </ul>
+    </nz-sider>
+    <nz-layout>
+      <nz-content style="min-height: 100vh;">
+        <div class="container">
+          <router-outlet></router-outlet>
+        </div>
+
+      </nz-content>
+    </nz-layout>
+  </nz-layout>
 

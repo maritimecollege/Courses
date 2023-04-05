@@ -28,84 +28,86 @@ export class NeedsAmountViewComponent implements OnInit {
   ngOnInit(): void {
     let numbers = this._calculationService.getAllNumbers();
     numbers.forEach(num => {
-        this.needsAmount.push(this._calculationService.defineNeedAmount(num));
-    })
-    let textColor = "#000";
-    let textColorSecondary = "#6C757D";
-    let surfaceBorder = "#DFE7EF";
-    this.data = {
-      labels: this.needsAmount.map(need => need.number),
-      datasets: [
-          {
-              label: 'Есть на складе',
-              backgroundColor: '#1890FF',
-              borderColor: '#1890FF',
-              data: this.needsAmount.map(need => need.exist)
-          },
-          {
-              label: 'Надо',
-              backgroundColor: '#EC4899',
-              borderColor: '#EC4899',
-              data: this.needsAmount.map(need => need.need)
-          }
-      ]
-  };
+      this.needsAmount.push(this._calculationService.defineNeedAmount(num));
+  })
+  //   numbers.forEach(num => {
+  //   })
+  //   let textColor = "#000";
+  //   let textColorSecondary = "#6C757D";
+  //   let surfaceBorder = "#DFE7EF";
+  //   this.data = {
+  //     labels: this.needsAmount.map(need => need.number),
+  //     datasets: [
+  //         {
+  //             label: 'Есть на складе',
+  //             backgroundColor: '#1890FF',
+  //             borderColor: '#1890FF',
+  //             data: this.needsAmount.map(need => need.exist)
+  //         },
+  //         {
+  //             label: 'Надо',
+  //             backgroundColor: '#EC4899',
+  //             borderColor: '#EC4899',
+  //             data: this.needsAmount.map(need => need.need)
+  //         }
+  //     ]
+  // };
 
-  this.options = {
-      maintainAspectRatio: false,
-      aspectRatio: 0.8,
-      plugins: {
-          legend: {
-              labels: {
-                  color: textColor
-              }
-          }
-      },
-      scales: {
-          x: {
-              ticks: {
-                  color: textColorSecondary,
-                  font: {
-                      weight: 500
-                  }
-              },
-              grid: {
-                  color: surfaceBorder,
-                  drawBorder: false
-              }
-          },
-          y: {
-              ticks: {
-                  color: textColorSecondary
-              },
-              grid: {
-                  color: surfaceBorder,
-                  drawBorder: false
-              }
-          }
-        }
-      }
-      this.circleData = {
-        labels: this.needsAmount.filter(need => need.limitPercent > 0).map(need => need.number),
-        datasets: [
-            {
-                data: this.needsAmount.filter(need => need.limitPercent > 0).map(need => need.limitPercent),
-                backgroundColor: this.needsAmount.filter(need => need.limitPercent > 0).map(need => this.getRandomColor()),
-                hoverBackgroundColor: this.needsAmount.filter(need => need.limitPercent > 0).map(need => this.getRandomColor())
-            }
-        ]
-    };
+  // this.options = {
+  //     maintainAspectRatio: false,
+  //     aspectRatio: 0.8,
+  //     plugins: {
+  //         legend: {
+  //             labels: {
+  //                 color: textColor
+  //             }
+  //         }
+  //     },
+  //     scales: {
+  //         x: {
+  //             ticks: {
+  //                 color: textColorSecondary,
+  //                 font: {
+  //                     weight: 500
+  //                 }
+  //             },
+  //             grid: {
+  //                 color: surfaceBorder,
+  //                 drawBorder: false
+  //             }
+  //         },
+  //         y: {
+  //             ticks: {
+  //                 color: textColorSecondary
+  //             },
+  //             grid: {
+  //                 color: surfaceBorder,
+  //                 drawBorder: false
+  //             }
+  //         }
+  //       }
+  //     }
+  //     this.circleData = {
+  //       labels: this.needsAmount.filter(need => need.limitPercent > 0).map(need => need.number),
+  //       datasets: [
+  //           {
+  //               data: this.needsAmount.filter(need => need.limitPercent > 0).map(need => need.limitPercent),
+  //               backgroundColor: this.needsAmount.filter(need => need.limitPercent > 0).map(need => this.getRandomColor()),
+  //               hoverBackgroundColor: this.needsAmount.filter(need => need.limitPercent > 0).map(need => this.getRandomColor())
+  //           }
+  //       ]
+  //   };
 
-    this.circleOptions = {
-        plugins: {
-            legend: {
-                labels: {
-                    usePointStyle: true,
-                    color: textColor
-                }
-            }
-        }
-    };
+  //   this.circleOptions = {
+  //       plugins: {
+  //           legend: {
+  //               labels: {
+  //                   usePointStyle: true,
+  //                   color: textColor
+  //               }
+  //           }
+  //       }
+  //   };
     }
 
     

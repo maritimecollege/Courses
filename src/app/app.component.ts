@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
-import { RequestModel } from './models/request';
+import { NoteModel } from './models/note';
 import { CalculationService, Entity } from './services/calculation.service';
 
 
@@ -17,10 +17,10 @@ export class AppComponent {
     constructor(
       private _calculationService: CalculationService
     ) {
-      this.requests =  this._calculationService.getAll(Entity.REQUEST) as RequestModel[]
+      this.requests =  this._calculationService.getAll(Entity.REQUEST) as NoteModel[]
       
     }
 
 
-    requests: RequestModel[];
+    requests: NoteModel[];
 }

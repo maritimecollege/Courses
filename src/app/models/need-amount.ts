@@ -1,8 +1,8 @@
 export interface NeedAmountModel {
-  id: string,
-  number: string,
-  need: number,
-  exist: number,
-  limit: number,
-  limitPercent: number,
+  id: string | null,
+  groupCode: string | null,
+  averageGrade: number | null,
+  totalMissedLectionsAndPractices: number | null,
+  totalMissedLections: number | null,
+  totalMissedPractices: number | null,
 }

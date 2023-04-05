@@ -1,48 +1,68 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { RequestModel } from 'src/app/models/request';
+import { NzModalService } from 'ng-zorro-antd/modal';
+import { NoteModel } from 'src/app/models/note';
 import { CalculationService, Entity } from 'src/app/services/calculation.service';
+
 
 @Component({
   selector: 'app-request-view',
   templateUrl: './request-view.component.html',
-  styleUrls: ['./request-view.component.scss']
+  styleUrls: ['./request-view.component.scss'],
 })
 export class RequestViewComponent{
 
   @Input()
-  request: RequestModel;
+  request: NoteModel;
 
-  public requestForm = this._fb.group({
-    id: ['', Validators.required],
-    date: ['', Validators.required],
-    companyCode: ['', Validators.required],
-    number: ['', Validators.required],
-    measureCode: ['', Validators.required],
-    quantity: [0, Validators.required],
-    price: [0, Validators.required]
+  public noteForm = this._fb.group({
+    id: [''],
+    groupCode: ['', Validators.required],
+    courseCode: ['', Validators.required],
+    fivesQuantity: [0, Validators.required],
+    foursQuantity: [0, Validators.required],
+    threesQuantity: [0, Validators.required],
+    twosQuantity: [0, Validators.required],
+    missedLectionsQuantity: [0, Validators.required],
+    missedPracticesQuantity: [0, Validators.required],
   })
 
 
   constructor(
     private _fb: FormBuilder,
-    private _calculationService: CalculationService
+    private _calculationService: CalculationService,
+    private modal: NzModalService
     ) { }
 
     ngOnInit() {
-      this.requestForm.patchValue(this.request);
+      this.noteForm.patchValue(this.request);
     }
 
     edit() {
-      this._calculationService.edit(this.requestForm.value! as RequestModel, Entity.REQUEST);
+      this._calculationService.edit(this.noteForm.value! as NoteModel, Entity.REQUEST);
       location.reload();
     }
 
     delete() {
-      this._calculationService.delete(this.requestForm.controls.id.value!, Entity.REQUEST);
+      this._calculationService.delete(this.noteForm.controls.id.value!, Entity.REQUEST);
       location.reload();
 
     }
+
+    confirmEdit() {
+      this.modal.confirm({
+        nzTitle: '<i>Вы уверены, что хотите отредактировать данную запись?</i>',
+        nzOnOk: () => this.edit()
+      });
+  }
+
+    confirmDelete() {
+      this.modal.confirm({
+        nzTitle: '<i>Вы уверены, что хотите удалить данную запись?</i>',
+        nzContent: '<b>Отменить данное действие будет невозможно</b>',
+        nzOnOk: () => this.delete()
+      });
+  }
 
 
 }

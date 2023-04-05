@@ -6,7 +6,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { RequestComponent } from './components/request/request.component';
-import { LimitsComponent } from './components/limits/limits.component';
 
 
 import { NzInputModule } from 'ng-zorro-antd/input';
@@ -17,10 +16,8 @@ import ru from '@angular/common/locales/ru';
 import { registerLocaleData } from '@angular/common';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { RequestViewComponent } from './components/request-view/request-view.component';
-import { LimitViewComponent } from './components/limit-view/limit-view.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RequestsViewComponent } from './pages/requests-view/requests-view.component';
-import { LimitsViewComponent } from './pages/limits-view/limits-view.component';
 import { SearchComponent } from './components/search/search.component';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NeedAmountComponent } from './components/need-amount/need-amount.component';
@@ -31,7 +28,8 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzTableModule } from 'ng-zorro-antd/table';
-
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { NzMenuModule } from 'ng-zorro-antd/menu';
 
 registerLocaleData(ru);
 
@@ -39,11 +37,8 @@ registerLocaleData(ru);
   declarations: [
     AppComponent,
     RequestComponent,
-    LimitsComponent,
     RequestViewComponent,
-    LimitViewComponent,
     RequestsViewComponent,
-    LimitsViewComponent,
     SearchComponent,
     NeedAmountComponent,
     NeedAmountViewComponent,
@@ -63,7 +58,9 @@ registerLocaleData(ru);
     NzFormModule,
     NzCollapseModule,
     NzModalModule,
-    NzTableModule  
+    NzTableModule,
+    NzLayoutModule,
+    NzMenuModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: ru_RU }],
   bootstrap: [AppComponent]

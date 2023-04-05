@@ -1,3 +1,8 @@
 .request {
   margin-bottom: 10px;
 }
+
+.requests {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}

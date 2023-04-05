@@ -1,24 +1,24 @@
 <div class="wrapper">
     <form [formGroup]="needAmountForm" class="form">
       <div>
-        <label for="">Номенклатурный номер</label>
-        <input type="text" formControlName="number" nz-input />
+        <label for="">Шифр группы</label>
+        <input type="text" formControlName="groupCode" nz-input />
       </div>
       <div>
-        <label for="">Есть на складе</label>
-        <input type="text" formControlName="exist" nz-input />
+        <label for="">Средний балл</label>
+        <input type="text" formControlName="averageGrade" nz-input />
       </div>
       <div>
-        <label for="">Надо</label>
-        <input type="text" formControlName="need" nz-input />
+        <label for="">Всего пропущено занятий</label>
+        <input type="text" formControlName="totalMissedLectionsAndPractices" nz-input />
       </div>
       <div>
-        <label for="">Лимит</label>
-        <input type="text" formControlName="limit" nz-input />
+        <label for="">Всего пропущено лекций</label>
+        <input type="text" formControlName="totalMissedLections" nz-input />
       </div>
       <div>
-        <label for="">Лимит(%)</label>
-        <input type="text" formControlName="limitPercent" nz-input />
+        <label for="">Всего пропущено практических занятий</label>
+        <input type="text" formControlName="totalMissedPractices" nz-input />
       </div>
     </form>
   </div>

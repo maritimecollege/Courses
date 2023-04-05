@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RequestModel } from 'src/app/models/request';
+import { NoteModel } from 'src/app/models/note';
 import { CalculationService, Entity } from 'src/app/services/calculation.service';
 
 @Component({
@@ -16,7 +16,7 @@ export class RequestsViewComponent implements OnInit {
     
   }
   ngOnInit(): void {
-    this.requests =  this._calculationService.getAll(Entity.REQUEST) as RequestModel[]
+    this.requests =  this._calculationService.getAll(Entity.REQUEST) as NoteModel[]
   }
 
 
@@ -24,6 +24,6 @@ export class RequestsViewComponent implements OnInit {
     this.requests = $event;
   }
 
-  requests: RequestModel[];
+  requests: NoteModel[];
 
 }

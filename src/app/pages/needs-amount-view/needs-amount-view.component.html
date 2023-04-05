@@ -1,9 +1,7 @@
-<app-search [entities]="needsAmount" (entitiesChanged)="changed($event)"></app-search>
 
 <div class="wrapper">
-    
-    <button nz-button nzType="default" (click)="showModal()">Сформировать отчет</button>
-    <nz-collapse>
+
+    <!-- <nz-collapse>
         <nz-collapse-panel
       nzHeader="Гистограмма"
       [nzActive]="true"
@@ -26,8 +24,8 @@
             <p-chart type="pie" [data]="circleData" [options]="circleOptions"></p-chart>
         </div>
     </div>
-</nz-collapse-panel>
-</nz-collapse>
+</nz-collapse-panel> -->
+<!-- </nz-collapse> -->
 
     <nz-modal [(nzVisible)]="isVisible" nzTitle="Отчет" nzWidth="800px" (nzOnCancel)="handleCancel()" (nzOnOk)="response()" [nzModalType]="'default'">
       <ng-container *nzModalContent>
@@ -41,7 +39,7 @@
                 <th>Превышает лимит на (%)</th>
               </tr>
             </thead>
-            <tbody>
+            <!-- <tbody>
               <tr *ngFor="let data of basicTable.data">
                 <td>{{data.number}}</td>
                 <td>{{data.need}}</td>
@@ -49,7 +47,7 @@
                 <td>{{data.limit}}</td>
                 <td>{{data.limitPercent > 0 ? data.limitPercent : 'Не превышает лимит'}}</td>
               </tr>
-            </tbody>
+            </tbody> -->
           </nz-table>
           <div>
             * - Если число отрицательное - значит количество требуемых предметов не превышает количество существующих предметов на складе 
@@ -61,7 +59,9 @@
   
 
 
-
-<div *ngFor="let needAmount of needsAmount" class="needAmount">
+<div class="requests">
+  
+  <div *ngFor="let needAmount of needsAmount" class="needAmount">
     <app-need-amount-view [needAmount]="needAmount"></app-need-amount-view>
+  </div>
 </div>

@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { LimitModel } from 'src/app/models/limit';
 import { NeedAmountModel } from 'src/app/models/need-amount';
-import { RequestModel } from 'src/app/models/request';
+import { NoteModel } from 'src/app/models/note';
 import { Entity } from 'src/app/services/calculation.service';
 import { SearchService } from 'src/app/services/search.service';
 
@@ -16,12 +15,12 @@ export class SearchComponent implements OnInit {
   value: string;
 
   @Input()
-  entities: RequestModel[] | LimitModel[] | NeedAmountModel[];
+  entities: NoteModel[] | NeedAmountModel[];
 
   @Output()
-  entitiesChanged = new EventEmitter<RequestModel[] | LimitModel[] | NeedAmountModel[]>();
+  entitiesChanged = new EventEmitter<NoteModel[] | NeedAmountModel[]>();
 
-  resetEntities: RequestModel[] | LimitModel[] | NeedAmountModel[];
+  resetEntities: NoteModel[] | NeedAmountModel[];
 
   constructor(
     private searchService: SearchService,
