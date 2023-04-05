@@ -30,84 +30,83 @@ export class NeedsAmountViewComponent implements OnInit {
     numbers.forEach(num => {
       this.needsAmount.push(this._calculationService.defineNeedAmount(num));
   })
-  //   numbers.forEach(num => {
-  //   })
-  //   let textColor = "#000";
-  //   let textColorSecondary = "#6C757D";
-  //   let surfaceBorder = "#DFE7EF";
-  //   this.data = {
-  //     labels: this.needsAmount.map(need => need.number),
-  //     datasets: [
-  //         {
-  //             label: 'Есть на складе',
-  //             backgroundColor: '#1890FF',
-  //             borderColor: '#1890FF',
-  //             data: this.needsAmount.map(need => need.exist)
-  //         },
-  //         {
-  //             label: 'Надо',
-  //             backgroundColor: '#EC4899',
-  //             borderColor: '#EC4899',
-  //             data: this.needsAmount.map(need => need.need)
-  //         }
-  //     ]
-  // };
 
-  // this.options = {
-  //     maintainAspectRatio: false,
-  //     aspectRatio: 0.8,
-  //     plugins: {
-  //         legend: {
-  //             labels: {
-  //                 color: textColor
-  //             }
-  //         }
-  //     },
-  //     scales: {
-  //         x: {
-  //             ticks: {
-  //                 color: textColorSecondary,
-  //                 font: {
-  //                     weight: 500
-  //                 }
-  //             },
-  //             grid: {
-  //                 color: surfaceBorder,
-  //                 drawBorder: false
-  //             }
-  //         },
-  //         y: {
-  //             ticks: {
-  //                 color: textColorSecondary
-  //             },
-  //             grid: {
-  //                 color: surfaceBorder,
-  //                 drawBorder: false
-  //             }
-  //         }
-  //       }
-  //     }
-  //     this.circleData = {
-  //       labels: this.needsAmount.filter(need => need.limitPercent > 0).map(need => need.number),
-  //       datasets: [
-  //           {
-  //               data: this.needsAmount.filter(need => need.limitPercent > 0).map(need => need.limitPercent),
-  //               backgroundColor: this.needsAmount.filter(need => need.limitPercent > 0).map(need => this.getRandomColor()),
-  //               hoverBackgroundColor: this.needsAmount.filter(need => need.limitPercent > 0).map(need => this.getRandomColor())
-  //           }
-  //       ]
-  //   };
+    let textColor = "#000";
+    let textColorSecondary = "#6C757D";
+    let surfaceBorder = "#DFE7EF";
+    this.data = {
+      labels: this.needsAmount.map(need => need.groupCode),
+      datasets: [
+          {
+              label: 'Количество пропущенных лекций',
+              backgroundColor: 'green',
+              borderColor: 'green',
+              data: this.needsAmount.map(need => need.totalMissedLections)
+          },
+          {
+              label: 'Количество пропущенных практических занятий',
+              backgroundColor: 'red',
+              borderColor: 'red',
+              data: this.needsAmount.map(need => need.totalMissedPractices)
+          }
+      ]
+  };
 
-  //   this.circleOptions = {
-  //       plugins: {
-  //           legend: {
-  //               labels: {
-  //                   usePointStyle: true,
-  //                   color: textColor
-  //               }
-  //           }
-  //       }
-  //   };
+  this.options = {
+      maintainAspectRatio: false,
+      aspectRatio: 0.8,
+      plugins: {
+          legend: {
+              labels: {
+                  color: textColor
+              }
+          }
+      },
+      scales: {
+          x: {
+              ticks: {
+                  color: textColorSecondary,
+                  font: {
+                      weight: 500
+                  }
+              },
+              grid: {
+                  color: surfaceBorder,
+                  drawBorder: false
+              }
+          },
+          y: {
+              ticks: {
+                  color: textColorSecondary
+              },
+              grid: {
+                  color: surfaceBorder,
+                  drawBorder: false
+              }
+          }
+        }
+      }
+      this.circleData = {
+        labels: this.needsAmount.filter(need => need.totalMissedLectionsAndPractices! > 0).map(need => need.groupCode),
+        datasets: [
+            {
+                data: this.needsAmount.filter(need => need.totalMissedLectionsAndPractices! > 0).map(need => need.totalMissedLectionsAndPractices!),
+                backgroundColor: this.needsAmount.filter(need => need.totalMissedLectionsAndPractices! > 0).map(need => this.getRandomColor()),
+                hoverBackgroundColor: this.needsAmount.filter(need => need.totalMissedLectionsAndPractices! > 0).map(need => this.getRandomColor())
+            }
+        ]
+    };
+
+    this.circleOptions = {
+        plugins: {
+            legend: {
+                labels: {
+                    usePointStyle: true,
+                    color: textColor
+                }
+            }
+        }
+    };
     }
 
     

@@ -1,31 +1,26 @@
 
 <div class="wrapper">
-
-    <!-- <nz-collapse>
-        <nz-collapse-panel
-      nzHeader="Гистограмма"
-      [nzActive]="true"
-    >
+    <div style="margin-top: 25px; font-weight: 700;">
+      Гистограмма пропущенных лекций и практических занятий
+    </div>
     <div class="chart">
         <div class="chart__histo">
             <div class="chart__histo__legend-y">Количество</div>
             <p-chart style="width: 100%;" type="bar" [data]="data" [options]="options"></p-chart>
         </div>
-        <div class="chart__histo__legend-x">Номенклатурный номер</div>
+        <div class="chart__histo__legend-x">Группа</div>
     </div>
-    </nz-collapse-panel>
-    <nz-collapse-panel
-      nzHeader="Круговая диаграмма"
-      [nzActive]="true"
-      >
+
+    <div style="margin-top: 25px; font-weight: 700;">
+      Диаграмма пропущенных занятий (сумма)
+    </div>
     <div class="chart">
         <div class="chart__circle">
-            <div class="chart__histo__legend-x">Номенклатурный номер</div>
+            <!-- <div class="chart__histo__legend-x">Номенклатурный номер</div> -->
             <p-chart type="pie" [data]="circleData" [options]="circleOptions"></p-chart>
         </div>
     </div>
-</nz-collapse-panel> -->
-<!-- </nz-collapse> -->
+
 
     <nz-modal [(nzVisible)]="isVisible" nzTitle="Отчет" nzWidth="800px" (nzOnCancel)="handleCancel()" (nzOnOk)="response()" [nzModalType]="'default'">
       <ng-container *nzModalContent>
