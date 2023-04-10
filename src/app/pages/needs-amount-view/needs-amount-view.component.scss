@@ -13,12 +13,10 @@
         &__legend-y {
             writing-mode: vertical-lr;
             transform: scale(-1, -1);
-            color: #fff;
         }
         &__legend-x {
             display: flex;
             justify-content: center;
-            color: #fff;
         }
     }
 
@@ -27,13 +25,9 @@
         max-width: 400px;
         &__legend-y {
             writing-mode: vertical-lr;
-            transform: scale(-1, -1);
-            color: #fff;
         }
         &__legend-x {
             display: flex;
-            justify-content: center;
-            color: #fff;
         }
     }
 }

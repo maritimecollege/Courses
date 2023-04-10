@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NeedAmountModel } from 'src/app/models/need-amount';
+import { TotalModel } from 'src/app/models/total';
 import { CalculationService, Entity } from 'src/app/services/calculation.service';
 
 @Component({
@@ -18,6 +19,7 @@ export class NeedsAmountViewComponent implements OnInit {
 
   circleOptions: any;
 
+  total: TotalModel;
 
   constructor(
     private _calculationService: CalculationService
@@ -26,6 +28,7 @@ export class NeedsAmountViewComponent implements OnInit {
     
   }
   ngOnInit(): void {
+    this.total = this._calculationService.defineTotalAmount();
     let numbers = this._calculationService.getAllNumbers();
     numbers.forEach(num => {
       this.needsAmount.push(this._calculationService.defineNeedAmount(num));
@@ -35,19 +38,19 @@ export class NeedsAmountViewComponent implements OnInit {
     let textColorSecondary = "#6C757D";
     let surfaceBorder = "#DFE7EF";
     this.data = {
-      labels: this.needsAmount.map(need => need.groupCode),
+      labels: this.needsAmount.map(need => need.flightNumber),
       datasets: [
+          // {
+          //     label: 'Средняя стоимость перевозки одного пассажира',
+          //     backgroundColor: 'green',
+          //     borderColor: 'green',
+          //     data: this.needsAmount.map(need => need.averageExpensesPassengerFlight)
+          // },
           {
-              label: 'Количество пропущенных лекций',
-              backgroundColor: 'green',
-              borderColor: 'green',
-              data: this.needsAmount.map(need => need.totalMissedLections)
-          },
-          {
-              label: 'Количество пропущенных практических занятий',
+              label: 'Количество пассажиров',
               backgroundColor: 'red',
               borderColor: 'red',
-              data: this.needsAmount.map(need => need.totalMissedPractices)
+              data: this.needsAmount.map(need => need.passengersCount)
           }
       ]
   };
@@ -87,12 +90,12 @@ export class NeedsAmountViewComponent implements OnInit {
         }
       }
       this.circleData = {
-        labels: this.needsAmount.filter(need => need.totalMissedLectionsAndPractices! > 0).map(need => need.groupCode),
+        labels: this.needsAmount.map(need => need.flightNumber),
         datasets: [
             {
-                data: this.needsAmount.filter(need => need.totalMissedLectionsAndPractices! > 0).map(need => need.totalMissedLectionsAndPractices!),
-                backgroundColor: this.needsAmount.filter(need => need.totalMissedLectionsAndPractices! > 0).map(need => this.getRandomColor()),
-                hoverBackgroundColor: this.needsAmount.filter(need => need.totalMissedLectionsAndPractices! > 0).map(need => this.getRandomColor())
+                data: this.needsAmount.map(need => need.averageExpensesPassengerFlight),
+                backgroundColor: this.needsAmount.map(need => this.getRandomColor()),
+                hoverBackgroundColor: this.needsAmount.map(need => this.getRandomColor())
             }
         ]
     };

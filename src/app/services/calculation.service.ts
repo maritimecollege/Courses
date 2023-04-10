@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable, of, reduce, Subject } from 'rxjs';
 import { NoteModel } from '../models/note';
 import { UUID } from 'angular2-uuid';
 import { NeedAmountModel } from '../models/need-amount';
+import { TotalModel } from '../models/total';
 
 
 @Injectable({
@@ -70,31 +71,42 @@ export class CalculationService{
   }
 
   getAllNumbers(): Set<string> {
-    return new Set(this.getAll(Entity.REQUEST).map(en => en.groupCode!));
+    return new Set(this.getAll(Entity.REQUEST).map(en => en.flightNumber!));
   }
 
-  defineNeedAmount(groupCode: string) : NeedAmountModel {
-    let tempReq = this.requests.getValue()?.filter(req => req.groupCode == groupCode);
+  defineNeedAmount(flightNumber: string) : NeedAmountModel {
+    let tempReq = this.requests.getValue()?.filter(req => req.flightNumber == flightNumber);
     console.log(tempReq)
 
-    let allGradesCount = tempReq?.map(req => (Number(req.fivesQuantity!) + Number(req.foursQuantity!) + Number(req.threesQuantity!) + Number(req.twosQuantity!)));
-    let averageGrade = tempReq?.map(req => (Number(req.fivesQuantity!) * 5 + Number(req.foursQuantity!) * 4 + Number(req.threesQuantity!) * 3 + Number(req.twosQuantity!) * 2));
-    let missedLectionsAndPractises = tempReq?.map(req => (Number(req.missedLectionsQuantity) + Number(req.missedPracticesQuantity))).reduce((acc, value) => acc + Number(value), 0);
-    let missedLections = tempReq?.map(req => (req.missedLectionsQuantity)).reduce((acc, value) => acc! + Number(value), 0);
-    let missedPractices = tempReq?.map(req => (req.missedPracticesQuantity)).reduce((acc, value) => acc! + Number(value), 0);
-   let avMark = averageGrade?.reduce((acc, value) => acc + Number(value), 0);
-   let avMarkCount = allGradesCount?.reduce((acc, value) => acc + Number(value), 0);
-    console.log(avMark! / avMarkCount!)
-    console.log(missedLectionsAndPractises)
-    console.log(missedLections)
-    console.log(missedPractices)
+    let passengersCount = tempReq?.map(req => (Number(req.passengersCount!))).reduce((acc, value) => Number(acc) + Number(value), 0);
+    let averageExpenses = tempReq?.map(req => (Number(req.expenses!))).reduce((acc, value) => Number(acc) + Number(value), 0);
+    
+    console.log(passengersCount);
+    console.log(averageExpenses);
     let res: NeedAmountModel = {
       id: UUID.UUID(),
-      groupCode: groupCode,
-      averageGrade: avMark! / avMarkCount!,
-      totalMissedLectionsAndPractices: missedLectionsAndPractises!,
-      totalMissedLections: missedLections!,
-      totalMissedPractices: missedPractices!,
+      flightNumber: flightNumber,
+      averageExpensesPassengerFlight: (averageExpenses! / passengersCount!) ? Math.floor(averageExpenses! / passengersCount!) : 0,
+      passengersCount: passengersCount!
+    }
+
+    return res;
+  }
+
+  defineTotalAmount() : TotalModel {
+    let tempReq = this.requests.getValue();
+    console.log(tempReq)
+
+    let passengersCount = tempReq?.map(req => (Number(req.passengersCount!))).reduce((acc, value) => Number(acc) + Number(value), 0);
+    let averageExpenses = tempReq?.map(req => (Number(req.expenses!))).reduce((acc, value) => Number(acc) + Number(value), 0);
+    
+    console.log(passengersCount);
+    console.log(averageExpenses);
+    let res: TotalModel = {
+      id: UUID.UUID(),
+      totalExpenses: averageExpenses!,
+      totalPassengers: passengersCount!,
+      averageExpensesPassenger: (averageExpenses! / passengersCount!) ? Math.floor(averageExpenses! / passengersCount!) : 0
     }
 
     return res;

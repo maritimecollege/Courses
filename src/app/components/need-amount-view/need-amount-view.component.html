@@ -1,24 +1,12 @@
 <div class="wrapper">
     <form [formGroup]="needAmountForm" class="form">
       <div>
-        <label for="">Шифр группы</label>
-        <input type="text" formControlName="groupCode" nz-input />
+        <label for="">Номер рейса</label>
+        <input type="text" formControlName="flightNumber" nz-input />
       </div>
       <div>
-        <label for="">Средний балл</label>
-        <input type="text" formControlName="averageGrade" nz-input />
-      </div>
-      <div>
-        <label for="">Всего пропущено занятий</label>
-        <input type="text" formControlName="totalMissedLectionsAndPractices" nz-input />
-      </div>
-      <div>
-        <label for="">Всего пропущено лекций</label>
-        <input type="text" formControlName="totalMissedLections" nz-input />
-      </div>
-      <div>
-        <label for="">Всего пропущено практических занятий</label>
-        <input type="text" formControlName="totalMissedPractices" nz-input />
+        <label for="">Средняя стоимость перевозки одного рассажира</label>
+        <input type="text" formControlName="averageExpensesPassengerFlight" nz-input />
       </div>
     </form>
   </div>

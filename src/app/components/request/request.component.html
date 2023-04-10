@@ -4,8 +4,8 @@
     <nz-form-item>
       <nz-form-control [nzErrorTip]="error">
         <div>
-          <label for="">Шифр группы</label>
-          <input type="text" formControlName="groupCode" nz-input />
+          <label for="">Номер рейса</label>
+          <input type="text" formControlName="flightNumber" nz-input />
 
         </div>
       </nz-form-control>
@@ -13,56 +13,32 @@
     <nz-form-item>
       <nz-form-control [nzErrorTip]="error">
         <div>
-          <label for="">Шифр дисциплины</label>
-          <input type="text" formControlName="courseCode" nz-input />
+          <label for="">Маршрут</label>
+          <input type="text" formControlName="course" nz-input />
         </div>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
       <nz-form-control [nzErrorTip]="error">
         <div>
-          <label for="">Количество отличных оценок</label>
-      <input type="text" formControlName="fivesQuantity" nz-input />
+          <label for="">Марка самолета</label>
+      <input type="text" formControlName="planeBrand" nz-input />
         </div>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
       <nz-form-control [nzErrorTip]="error">
         <div>
-          <label for="">Количество хороших оценок</label>
-          <input type="text" formControlName="foursQuantity" nz-input />
+          <label for="">Общие стоимостные затраты на рейс(руб.)</label>
+          <input type="text" formControlName="expenses" nz-input />
         </div>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
       <nz-form-control [nzErrorTip]="error">
         <div>
-          <label for="">Количество удовлетворительных оценок</label>
-          <input type="text" formControlName="threesQuantity" nz-input  nz-tooltip/>
-        </div>
-      </nz-form-control>
-    </nz-form-item>
-    <nz-form-item>
-      <nz-form-control [nzErrorTip]="error">
-        <div>
-          <label for="">Количество неудовлетворительных оценок</label>
-          <input type="text" formControlName="twosQuantity" nz-input  nz-tooltip/>
-        </div>
-      </nz-form-control>
-    </nz-form-item>
-    <nz-form-item>
-      <nz-form-control [nzErrorTip]="error">
-        <div>
-          <label for="">Количество пропущенных лекций</label>
-          <input type="text" formControlName="missedLectionsQuantity" nz-input  nz-tooltip/>
-        </div>
-      </nz-form-control>
-    </nz-form-item>
-    <nz-form-item>
-      <nz-form-control [nzErrorTip]="error">
-        <div>
-          <label for="">Количество пропущенных практических</label>
-          <input type="text" formControlName="missedPracticesQuantity" nz-input  nz-tooltip/>
+          <label for="">Количество пассажиров</label>
+          <input type="text" formControlName="passengersCount" nz-input  nz-tooltip/>
         </div>
       </nz-form-control>
     </nz-form-item>

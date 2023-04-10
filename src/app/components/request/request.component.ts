@@ -12,14 +12,11 @@ export class RequestComponent {
 
   public noteForm = this._fb.group({
     id: [''],
-    groupCode: ['', Validators.required],
-    courseCode: ['', Validators.required],
-    fivesQuantity: [0, Validators.required],
-    foursQuantity: [0, Validators.required],
-    threesQuantity: [0, Validators.required],
-    twosQuantity: [0, Validators.required],
-    missedLectionsQuantity: [0, Validators.required],
-    missedPracticesQuantity: [0, Validators.required],
+    flightNumber: ['', Validators.required],
+    course: ['', Validators.required],
+    planeBrand: ['', Validators.required],
+    expenses: [0, Validators.required],
+    passengersCount: [0, Validators.required],
   })
 
   constructor(

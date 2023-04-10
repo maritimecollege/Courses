@@ -27,7 +27,7 @@ export class NeedAmountComponent{
   ) { }
 
   define() {
-    this._calculationService.defineNeedAmount(this.needAmountForm.get('groupCode')?.value!);
+    // this._calculationService.defineNeedAmount(this.needAmountForm.get('groupCode')?.value!);
   }
 
 
