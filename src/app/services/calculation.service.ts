@@ -4,6 +4,7 @@ import { NoteModel } from '../models/note';
 import { UUID } from 'angular2-uuid';
 import { NeedAmountModel } from '../models/need-amount';
 import { TotalModel } from '../models/total';
+import { ActorsAmountModel } from '../models/actors-amount';
 
 
 @Injectable({
@@ -71,42 +72,55 @@ export class CalculationService{
   }
 
   getAllNumbers(): Set<string> {
-    return new Set(this.getAll(Entity.REQUEST).map(en => en.flightNumber!));
+    return new Set(this.getAll(Entity.REQUEST).map(en => en.producerFIO!));
+  }
+
+  getAllTheaters(): Set<string> {
+    return new Set(this.getAll(Entity.REQUEST).map(en => en.theatreName!));
   }
 
   defineNeedAmount(flightNumber: string) : NeedAmountModel {
-    let tempReq = this.requests.getValue()?.filter(req => req.flightNumber == flightNumber);
+    let tempReq = this.requests.getValue()?.filter(req => req.producerFIO == flightNumber);
     console.log(tempReq)
 
-    let passengersCount = tempReq?.map(req => (Number(req.passengersCount!))).reduce((acc, value) => Number(acc) + Number(value), 0);
-    let averageExpenses = tempReq?.map(req => (Number(req.expenses!))).reduce((acc, value) => Number(acc) + Number(value), 0);
+    let oneProducerActorsCount = tempReq?.length;
     
-    console.log(passengersCount);
-    console.log(averageExpenses);
     let res: NeedAmountModel = {
       id: UUID.UUID(),
-      flightNumber: flightNumber,
-      averageExpensesPassengerFlight: (averageExpenses! / passengersCount!) ? Math.floor(averageExpenses! / passengersCount!) : 0,
-      passengersCount: passengersCount!
+      producerFio: flightNumber,
+      actorsCountForOneProducer: oneProducerActorsCount!,
     }
 
     return res;
   }
 
-  defineTotalAmount() : TotalModel {
-    let tempReq = this.requests.getValue();
+  defineActorsAmount(flightNumber: string) : ActorsAmountModel {
+    let tempReq = this.requests.getValue()?.filter(req => req.theatreName == flightNumber);
     console.log(tempReq)
 
-    let passengersCount = tempReq?.map(req => (Number(req.passengersCount!))).reduce((acc, value) => Number(acc) + Number(value), 0);
-    let averageExpenses = tempReq?.map(req => (Number(req.expenses!))).reduce((acc, value) => Number(acc) + Number(value), 0);
-    
-    console.log(passengersCount);
-    console.log(averageExpenses);
-    let res: TotalModel = {
+    let oneProducerActorsCount = tempReq?.length;
+    let groupAm = tempReq?.reduce((acc, val) => Number(acc) + Number(val.groupCount), 0)
+    let res: ActorsAmountModel = {
       id: UUID.UUID(),
-      totalExpenses: averageExpenses!,
-      totalPassengers: passengersCount!,
-      averageExpensesPassenger: (averageExpenses! / passengersCount!) ? Math.floor(averageExpenses! / passengersCount!) : 0
+      theaterName: flightNumber,
+      actorsCount: oneProducerActorsCount!,
+      groupAmount: groupAm!
+    }
+
+    return res;
+  }
+
+  defineTotalAmount() : TotalModel | null {
+    
+    
+    let tempReq = this.requests.getValue();
+    let honoredActorsCount = tempReq?.filter(actor => actor.grade?.toLowerCase() == 'Заслуженный артист'.toLowerCase()).length;
+    let smallSalaryActorsCount = tempReq?.filter(actor => Number(actor.salary)! <= 12000).length;
+    console.log(tempReq)
+    let res: TotalModel = {
+      id: null,
+      honoredActorsCount: honoredActorsCount!,
+      smallSalaryActorsCount: smallSalaryActorsCount!,
     }
 
     return res;

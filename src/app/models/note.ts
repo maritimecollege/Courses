@@ -1,8 +1,9 @@
 export interface NoteModel {
   id: string | null,
-  flightNumber: string | null,
-  course: string | null,
-  planeBrand: string | null,
-  expenses: number | null,
-  passengersCount: number | null,
+  theatreName: string | null,
+  producerFIO: string | null,
+  actorFIO: string | null,
+  grade: string | null,
+  groupCount: number | null,
+  salary: number | null,
 }

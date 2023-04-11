@@ -4,8 +4,8 @@
     <nz-form-item>
       <nz-form-control [nzErrorTip]="error">
         <div>
-          <label for="">Номер рейса</label>
-          <input type="text" formControlName="flightNumber" nz-input />
+          <label for="">Название театра</label>
+          <input type="text" formControlName="theatreName" nz-input />
 
         </div>
       </nz-form-control>
@@ -13,32 +13,40 @@
     <nz-form-item>
       <nz-form-control [nzErrorTip]="error">
         <div>
-          <label for="">Маршрут</label>
-          <input type="text" formControlName="course" nz-input />
+          <label for="">ФИО главного режиссера</label>
+          <input type="text" formControlName="producerFIO" nz-input />
         </div>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
       <nz-form-control [nzErrorTip]="error">
         <div>
-          <label for="">Марка самолета</label>
-      <input type="text" formControlName="planeBrand" nz-input />
+          <label for="">ФИО актера</label>
+      <input type="text" formControlName="actorFIO" nz-input />
         </div>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
       <nz-form-control [nzErrorTip]="error">
         <div>
-          <label for="">Общие стоимостные затраты на рейс(руб.)</label>
-          <input type="text" formControlName="expenses" nz-input />
+          <label for="">Звание</label>
+          <input type="text" formControlName="grade" nz-input />
         </div>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
       <nz-form-control [nzErrorTip]="error">
         <div>
-          <label for="">Количество пассажиров</label>
-          <input type="text" formControlName="passengersCount" nz-input  nz-tooltip/>
+          <label for="">Численность группы</label>
+          <input type="text" formControlName="groupCount" nz-input  nz-tooltip/>
+        </div>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control [nzErrorTip]="error">
+        <div>
+          <label for="">Тарифная ставка</label>
+          <input type="text" formControlName="salary" nz-input  nz-tooltip/>
         </div>
       </nz-form-control>
     </nz-form-item>

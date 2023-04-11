@@ -10,15 +10,29 @@ $primary-color: #1890FF;
 
 body {
   box-sizing: border-box;
+  
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
+  
 }
 
 nz-date-picker {
   display: flex;
 }
 
+
+input {
+  height: 40px;
+  border-radius: 15px;
+}
+
+button {
+  height: 40px;
+  border-radius: 15px;
+  background-color: green;
+  border-color: green;
+}
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActorsAmountModel } from 'src/app/models/actors-amount';
 import { NeedAmountModel } from 'src/app/models/need-amount';
 import { TotalModel } from 'src/app/models/total';
 import { CalculationService, Entity } from 'src/app/services/calculation.service';
@@ -21,6 +22,7 @@ export class NeedsAmountViewComponent implements OnInit {
 
   total: TotalModel;
 
+  actors: ActorsAmountModel[] = [];
   constructor(
     private _calculationService: CalculationService
   ) {
@@ -28,17 +30,20 @@ export class NeedsAmountViewComponent implements OnInit {
     
   }
   ngOnInit(): void {
-    this.total = this._calculationService.defineTotalAmount();
+    this.total = this._calculationService.defineTotalAmount()!;
     let numbers = this._calculationService.getAllNumbers();
     numbers.forEach(num => {
       this.needsAmount.push(this._calculationService.defineNeedAmount(num));
   })
-
+    let theaters = this._calculationService.getAllTheaters();
+   theaters.forEach(num => {
+      this.actors.push(this._calculationService.defineActorsAmount(num));
+  })
     let textColor = "#000";
     let textColorSecondary = "#6C757D";
     let surfaceBorder = "#DFE7EF";
     this.data = {
-      labels: this.needsAmount.map(need => need.flightNumber),
+      labels: this.actors.map(need => need.theaterName),
       datasets: [
           // {
           //     label: 'Средняя стоимость перевозки одного пассажира',
@@ -47,10 +52,10 @@ export class NeedsAmountViewComponent implements OnInit {
           //     data: this.needsAmount.map(need => need.averageExpensesPassengerFlight)
           // },
           {
-              label: 'Количество пассажиров',
-              backgroundColor: 'red',
-              borderColor: 'red',
-              data: this.needsAmount.map(need => need.passengersCount)
+              label: 'Численность группы',
+              backgroundColor: 'green',
+              borderColor: 'green',
+              data: this.actors.map(need => need.groupAmount)
           }
       ]
   };
@@ -90,12 +95,12 @@ export class NeedsAmountViewComponent implements OnInit {
         }
       }
       this.circleData = {
-        labels: this.needsAmount.map(need => need.flightNumber),
+        labels: this.actors.map(need => need.theaterName),
         datasets: [
             {
-                data: this.needsAmount.map(need => need.averageExpensesPassengerFlight),
-                backgroundColor: this.needsAmount.map(need => this.getRandomColor()),
-                hoverBackgroundColor: this.needsAmount.map(need => this.getRandomColor())
+                data: this.actors.map(need => need.actorsCount),
+                backgroundColor: this.actors.map(need => this.getRandomColor()),
+                hoverBackgroundColor: this.actors.map(need => this.getRandomColor())
             }
         ]
     };

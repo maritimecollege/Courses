@@ -1,21 +1,17 @@
 
 <div class="wrapper"  style="margin-top: 25px; font-weight: 700;">
-    <div>
-      <h1>
-        Итоговые данные
-      </h1>
-      <h2>
-        Общие затраты аэропорта: {{ total.totalExpenses | currency: "₽ " }}
-      </h2>
-      <h2>
-        Общее количество пассажиров аэропорта: {{ total.totalPassengers }}
-      </h2>
-      <h2>
-        Средняя стоимость провозки одного пассажира: {{ total.averageExpensesPassenger | currency: "₽ " }}
-      </h2>
-    </div>
+    
+  <div style="margin-top: 25px; font-weight: 700;">
+    Диаграмма театров и количества актеров в нем
+  </div>
+  <div class="chart">
+      <div class="chart__circle">
+          <div class="chart__histo__legend-x">Название театра</div>
+          <p-chart type="pie" [data]="circleData" [options]="circleOptions"></p-chart>
+      </div>
+  </div>
     <div  style="margin-top: 25px; font-weight: 700;">
-      Гистограмма численности пассажиров на рейс
+      Гистограмма численности группы на театр
     </div>
     <div class="chart" >
         <div class="chart__histo">
@@ -25,49 +21,19 @@
         <div class="chart__histo__legend-x">Номер рейса</div>
     </div>
 
-    <div style="margin-top: 25px; font-weight: 700;">
-      Диаграмма средней стоимости провозки одного пассажира на рейсе
-    </div>
-    <div class="chart">
-        <div class="chart__circle">
-            <div class="chart__histo__legend-x">Номер рейса</div>
-            <p-chart type="pie" [data]="circleData" [options]="circleOptions"></p-chart>
-        </div>
-    </div>
 
-
-    <nz-modal [(nzVisible)]="isVisible" nzTitle="Отчет" nzWidth="800px" (nzOnCancel)="handleCancel()" (nzOnOk)="response()" [nzModalType]="'default'">
-      <ng-container *nzModalContent>
-        <nz-table #basicTable [nzData]="needsAmount" [nzShowPagination]="false">
-            <thead>
-              <tr>
-                <th>Номенклатурный номер</th>
-                <th>Нужно</th>
-                <th>Есть на складе</th>
-                <th>Превышает лимит на *</th>
-                <th>Превышает лимит на (%)</th>
-              </tr>
-            </thead>
-            <!-- <tbody>
-              <tr *ngFor="let data of basicTable.data">
-                <td>{{data.number}}</td>
-                <td>{{data.need}}</td>
-                <td>{{data.exist}}</td>
-                <td>{{data.limit}}</td>
-                <td>{{data.limitPercent > 0 ? data.limitPercent : 'Не превышает лимит'}}</td>
-              </tr>
-            </tbody> -->
-          </nz-table>
-          <div>
-            * - Если число отрицательное - значит количество требуемых предметов не превышает количество существующих предметов на складе 
-          </div>
-      </ng-container>
-    </nz-modal>
 
 </div>
   
 
-
+<div style="margin: 50px">
+  <h2>
+    Количество актеров, имеющих звание "Заслуженный артист": {{ total.honoredActorsCount }}
+  </h2>
+  <h2>
+    Количество актеров, имеющих минимальную тарифную ставку (меньше 12000 рублей): {{ total.smallSalaryActorsCount }}
+  </h2>
+</div>
 <div class="requests">
   
   <div *ngFor="let needAmount of needsAmount" class="needAmount">

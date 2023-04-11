@@ -1,33 +1,29 @@
 
- 
+<nz-layout>
+  <nz-header>
+    <div class="logo"></div>
+    <ul nz-menu nzTheme="light" nzMode="horizontal">
+      <li nz-menu-item>
+        <a routerLink="requests/add" class="button">Добавить запись</a>
+      </li>
+      <li nz-menu-item>
+        <a routerLink="requests" class="button">Просмотр всех записей</a>
+
+      </li>
+      <li nz-menu-item>
+        <a routerLink="need-amount" class="button">Расчет</a>
+
+      </li>
+     
+    </ul>
+  </nz-header>
+  <nz-content style="min-height: 100vh;">
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+
+  </nz-content>
+</nz-layout>
   
   
- 
-  <nz-layout>
-    <nz-sider nzCollapsible nzWidth="220px">
-      <div class="logo"></div>
-      <ul nz-menu nzTheme="dark" nzMode="inline">
-        <li nz-menu-item>
-          <a routerLink="requests/add" class="button">Добавить запись</a>
-        </li>
-        <li nz-menu-item>
-          <a routerLink="requests" class="button">Просмотр всех записей</a>
-
-        </li>
-        <li nz-menu-item>
-          <a routerLink="need-amount" class="button">Расчет</a>
-
-        </li>
-       
-      </ul>
-    </nz-sider>
-    <nz-layout>
-      <nz-content style="min-height: 100vh;">
-        <div class="container">
-          <router-outlet></router-outlet>
-        </div>
-
-      </nz-content>
-    </nz-layout>
-  </nz-layout>
 
