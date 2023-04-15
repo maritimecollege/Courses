@@ -35,28 +35,23 @@ export class NeedsAmountViewComponent implements OnInit {
     numbers.forEach(num => {
       this.needsAmount.push(this._calculationService.defineNeedAmount(num));
   })
-    let theaters = this._calculationService.getAllTheaters();
-   theaters.forEach(num => {
-      this.actors.push(this._calculationService.defineActorsAmount(num));
-  })
+    // let theaters = this._calculationService.getAllTheaters();
+  //  theaters.forEach(num => {
+      // this.actors.push(this._calculationService.defineActorsAmount(num));
+  // })
     let textColor = "#000";
     let textColorSecondary = "#6C757D";
     let surfaceBorder = "#DFE7EF";
     this.data = {
-      labels: this.actors.map(need => need.theaterName),
+      labels: this.needsAmount.map(need => need.groupCode),
       datasets: [
-          // {
-          //     label: 'Средняя стоимость перевозки одного пассажира',
-          //     backgroundColor: 'green',
-          //     borderColor: 'green',
-          //     data: this.needsAmount.map(need => need.averageExpensesPassengerFlight)
-          // },
           {
-              label: 'Численность группы',
+              label: 'Процент отложенных программ',
               backgroundColor: 'green',
               borderColor: 'green',
-              data: this.actors.map(need => need.groupAmount)
-          }
+              data: this.needsAmount.map(need => need.debugedProgramsPercent)
+          },
+
       ]
   };
 
@@ -95,12 +90,12 @@ export class NeedsAmountViewComponent implements OnInit {
         }
       }
       this.circleData = {
-        labels: this.actors.map(need => need.theaterName),
+        labels: this.needsAmount.map(need => need.groupCode),
         datasets: [
             {
-                data: this.actors.map(need => need.actorsCount),
-                backgroundColor: this.actors.map(need => this.getRandomColor()),
-                hoverBackgroundColor: this.actors.map(need => this.getRandomColor())
+                data: this.needsAmount.map(need => need.debugedProgramsPercent),
+                backgroundColor: this.needsAmount.map(need => this.getRandomColor()),
+                hoverBackgroundColor: this.needsAmount.map(need => this.getRandomColor())
             }
         ]
     };

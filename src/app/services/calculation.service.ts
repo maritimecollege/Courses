@@ -72,61 +72,54 @@ export class CalculationService{
   }
 
   getAllNumbers(): Set<string> {
-    return new Set(this.getAll(Entity.REQUEST).map(en => en.producerFIO!));
+    return new Set(this.getAll(Entity.REQUEST).map(en => en.groupCode!));
   }
 
-  getAllTheaters(): Set<string> {
-    return new Set(this.getAll(Entity.REQUEST).map(en => en.theatreName!));
-  }
+
 
   defineNeedAmount(flightNumber: string) : NeedAmountModel {
-    let tempReq = this.requests.getValue()?.filter(req => req.producerFIO == flightNumber);
+    let tempReq = this.requests.getValue()?.filter(req => req.groupCode == flightNumber);
     console.log(tempReq)
 
-    let oneProducerActorsCount = tempReq?.length;
+    let oneProducerActorsCount = tempReq?.reduce((acc, val) => Number(acc) + Number(val.debugedProgramsCount) , 0);
+    let oneProducerActorsCount_ = tempReq?.reduce((acc, val) => Number(acc) + Number(val.studentsCount) , 0);
     
     let res: NeedAmountModel = {
       id: UUID.UUID(),
-      producerFio: flightNumber,
-      actorsCountForOneProducer: oneProducerActorsCount!,
+      groupCode: flightNumber,
+      debugedProgramsPercent: oneProducerActorsCount! * 100 / oneProducerActorsCount_!,
     }
-
     return res;
   }
 
-  defineActorsAmount(flightNumber: string) : ActorsAmountModel {
-    let tempReq = this.requests.getValue()?.filter(req => req.theatreName == flightNumber);
-    console.log(tempReq)
+  // defineActorsAmount(flightNumber: string) : ActorsAmountModel {
+  //   let tempReq = this.requests.getValue()?.filter(req => req.theatreName == flightNumber);
+  //   console.log(tempReq)
 
-    let oneProducerActorsCount = tempReq?.length;
-    let groupAm = tempReq?.reduce((acc, val) => Number(acc) + Number(val.groupCount), 0)
-    let res: ActorsAmountModel = {
-      id: UUID.UUID(),
-      theaterName: flightNumber,
-      actorsCount: oneProducerActorsCount!,
-      groupAmount: groupAm!
-    }
+  //   let oneProducerActorsCount = tempReq?.length;
+  //   let groupAm = tempReq?.reduce((acc, val) => Number(acc) + Number(val.groupCount), 0)
+  //   let res: ActorsAmountModel = {
+  //     id: UUID.UUID(),
+  //     theaterName: flightNumber,
+  //     actorsCount: oneProducerActorsCount!,
+  //     groupAmount: groupAm!
+  //   }
 
-    return res;
-  }
+  //   return res;
+  // }
 
   defineTotalAmount() : TotalModel | null {
-    
-    
     let tempReq = this.requests.getValue();
-    let honoredActorsCount = tempReq?.filter(actor => actor.grade?.toLowerCase() == 'Заслуженный артист'.toLowerCase()).length;
-    let smallSalaryActorsCount = tempReq?.filter(actor => Number(actor.salary)! <= 12000).length;
+    let debugedProgramsCount = tempReq?.reduce((acc, val) => Number(acc) + Number(val.debugedProgramsCount), 0);
+    let smallSalaryActorsCount = tempReq?.filter(actor => Number(actor.debugedProgramsCount)! <= 12000).length;
     console.log(tempReq)
     let res: TotalModel = {
       id: null,
-      honoredActorsCount: honoredActorsCount!,
-      smallSalaryActorsCount: smallSalaryActorsCount!,
+      groupsCount: this.getAllNumbers().size,
+      debugedProgramsCount: debugedProgramsCount!,
     }
-
     return res;
   }
-
-
 }
 
 

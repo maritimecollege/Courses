@@ -16,8 +16,8 @@ export class NeedAmountViewComponent implements OnInit {
 
   public needAmountForm = this._fb.group({
     id: [''],
-    producerFio: [''],
-    actorsCountForOneProducer: [0],
+    groupCode: ['', Validators.required],
+    debugedProgramsPercent: [0, Validators.required],
   })
 
   constructor(

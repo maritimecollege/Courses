@@ -17,12 +17,10 @@ export class RequestViewComponent{
 
   public noteForm = this._fb.group({
     id: [''],
-    theatreName: ['', Validators.required],
-    producerFIO: ['', Validators.required],
-    actorFIO: ['', Validators.required],
-    grade: ['', Validators.required],
-    groupCount: [0, Validators.required],
-    salary: [0, Validators.required],
+    subjectName: ['', Validators.required],
+    groupCode: ['', Validators.required],
+    studentsCount: [0, Validators.required],
+    debugedProgramsCount: [0, Validators.required],
   })
 
 

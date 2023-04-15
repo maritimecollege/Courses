@@ -1,42 +1,42 @@
 
 <div class="wrapper"  style="margin-top: 25px; font-weight: 700;">
-    
+  <div style="margin: 50px">
+    <h2>
+      Количество групп: {{ total.groupsCount }}
+    </h2>
+    <h2>
+      Количество отлаженных программ: {{ total.debugedProgramsCount }}
+    </h2>
+  </div>
   <div style="margin-top: 25px; font-weight: 700;">
-    Диаграмма театров и количества актеров в нем
+    Диаграмма количества отложенных программ по группам
   </div>
   <div class="chart">
       <div class="chart__circle">
-          <div class="chart__histo__legend-x">Название театра</div>
+          <div class="chart__histo__legend-x">Шифр группы</div>
           <p-chart type="pie" [data]="circleData" [options]="circleOptions"></p-chart>
       </div>
   </div>
     <div  style="margin-top: 25px; font-weight: 700;">
-      Гистограмма численности группы на театр
+      Гистограмма количества отложенных программ по группам
     </div>
     <div class="chart" >
         <div class="chart__histo">
-            <div class="chart__histo__legend-y">Количество пассажиров</div>
+            <div class="chart__histo__legend-y">Процент отложенных программ</div>
             <p-chart style="width: 100%;" type="bar" [data]="data" [options]="options"></p-chart>
         </div>
-        <div class="chart__histo__legend-x">Номер рейса</div>
+        <div class="chart__histo__legend-x">Шифр группы</div>
     </div>
 
 
+    <div class="requests">
+      
+      <div *ngFor="let needAmount of needsAmount" class="needAmount">
+        <app-need-amount-view [needAmount]="needAmount"></app-need-amount-view>
+      </div>
+    </div>
 
 </div>
   
 
-<div style="margin: 50px">
-  <h2>
-    Количество актеров, имеющих звание "Заслуженный артист": {{ total.honoredActorsCount }}
-  </h2>
-  <h2>
-    Количество актеров, имеющих минимальную тарифную ставку (меньше 12000 рублей): {{ total.smallSalaryActorsCount }}
-  </h2>
-</div>
-<div class="requests">
-  
-  <div *ngFor="let needAmount of needsAmount" class="needAmount">
-    <app-need-amount-view [needAmount]="needAmount"></app-need-amount-view>
-  </div>
-</div>
+

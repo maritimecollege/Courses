@@ -3,8 +3,8 @@
     <nz-form-item>
       <nz-form-control [nzErrorTip]="error">
         <div>
-          <label for="">Название театра</label>
-          <input type="text" formControlName="theatreName" nz-input />
+          <label for="">Шифр группы</label>
+          <input type="text" formControlName="groupCode" nz-input />
 
         </div>
       </nz-form-control>
@@ -12,40 +12,24 @@
     <nz-form-item>
       <nz-form-control [nzErrorTip]="error">
         <div>
-          <label for="">ФИО главного режиссера</label>
-          <input type="text" formControlName="producerFIO" nz-input />
+          <label for="">Наименование дисциплины</label>
+          <input type="text" formControlName="subjectName" nz-input />
         </div>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
       <nz-form-control [nzErrorTip]="error">
         <div>
-          <label for="">ФИО актера</label>
-      <input type="text" formControlName="actorFIO" nz-input />
+          <label for="">Количество студентов в группе</label>
+      <input type="text" formControlName="studentsCount" nz-input />
         </div>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
       <nz-form-control [nzErrorTip]="error">
         <div>
-          <label for="">Звание</label>
-          <input type="text" formControlName="grade" nz-input />
-        </div>
-      </nz-form-control>
-    </nz-form-item>
-    <nz-form-item>
-      <nz-form-control [nzErrorTip]="error">
-        <div>
-          <label for="">Численность группы</label>
-          <input type="text" formControlName="groupCount" nz-input  nz-tooltip/>
-        </div>
-      </nz-form-control>
-    </nz-form-item>
-    <nz-form-item>
-      <nz-form-control [nzErrorTip]="error">
-        <div>
-          <label for="">Тарифная ставка</label>
-          <input type="text" formControlName="salary" nz-input  nz-tooltip/>
+          <label for="">Число отлаженных программ</label>
+          <input type="text" formControlName="debugedProgramsCount" nz-input />
         </div>
       </nz-form-control>
     </nz-form-item>
